@@ -1,6 +1,9 @@
 package com.adminRiesgos.services.implementation;
 
+import java.io.BufferedReader;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.io.InputStreamReader;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +27,15 @@ public class fileImpl implements FileService{
 		if (file.isEmpty()) {
             throw new FileEmptyException("El archivo está vacío");
         }
+		
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+			String content = reader.lines().collect(Collectors.joining("\n"));
+            System.out.println(content);
+            
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		
 		System.out.println("si cumple");
 		return null;
