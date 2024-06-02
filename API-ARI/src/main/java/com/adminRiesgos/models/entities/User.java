@@ -4,6 +4,7 @@ package com.adminRiesgos.models.entities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 
 
 @Data
@@ -18,6 +19,17 @@ public class User {
     private String type;
     private String cellphone;
     private String polygon; // TODO: Cambiar de String a JSON
+
+    //Constructor from array
+    public User(String[] data){
+        this.document = data[0];
+        this.name = data[1];
+        this.last_name = data[2];
+        this.card = data[3];
+        this.type = data[4];
+        this.cellphone = data[5];
+        //this.polygon = data[6];
+    }
 
     // Methods
 

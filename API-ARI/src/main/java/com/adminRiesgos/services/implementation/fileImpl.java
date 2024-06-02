@@ -1,10 +1,13 @@
 package com.adminRiesgos.services.implementation;
 
 import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.io.InputStreamReader;
 
+import com.adminRiesgos.models.entities.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,8 +32,17 @@ public class fileImpl implements FileService{
         }
 		
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
-			String content = reader.lines().collect(Collectors.joining("\n"));
-            System.out.println(content);
+			// String content = reader.lines().collect(Collectors.joining("\n"));
+
+			List<User> users = reader
+					.lines()
+					.map(
+							u ->
+									new User(u.split(";"))
+
+					)
+			.toList();
+            System.out.println(users.get(0));
             
 		} catch (Exception e) {
 			// TODO: handle exception
