@@ -1,6 +1,7 @@
 package com.adminRiesgos.models.entities;
 
 
+import com.adminRiesgos.utils.Encoder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,12 +21,14 @@ public class User {
     private String cellphone;
     private String polygon; // TODO: Cambiar de String a JSON
 
+    private Encoder encoder = new Encoder();
+
     //Constructor from array
     public User(String[] data){
         this.document = data[0];
         this.name = data[1];
         this.last_name = data[2];
-        this.card = data[3];
+        this.card = this.Encrypt(data[3], data[7],data[1].concat(data[2]));
         this.type = data[4];
         this.cellphone = data[5];
         //this.polygon = data[6];
@@ -34,12 +37,20 @@ public class User {
     // Methods
 
     // TODO: Implement Cipher method
-    public String Cipher() {
-        return null;
+    public String Encrypt(String data, String input, String salt) {
+
+        String result = "" ;
+        try {
+            result = encoder.encrypt(data,input,salt);}
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return result;
     }
 
     // TODO: Implement Decipher method
-    public String Decipher( String key){
+    public String Decrypt( String key){
         return null;
     }
 
