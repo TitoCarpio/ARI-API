@@ -32,6 +32,7 @@ public class Encoder {
     }
 
     private static IvParameterSpec generateIV(String root){
+        // TODO: See how this can be added, optional
         byte[] iv = root.getBytes();
         new SecureRandom().nextBytes(iv);
         return new IvParameterSpec(iv);

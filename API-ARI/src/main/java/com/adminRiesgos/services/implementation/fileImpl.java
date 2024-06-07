@@ -42,7 +42,7 @@ public class fileImpl implements FileService{
 
 					)
 			.toList();
-            System.out.println(users.get(0));
+            System.out.println(users);
             
 		} catch (Exception e) {
 			// TODO: handle exception

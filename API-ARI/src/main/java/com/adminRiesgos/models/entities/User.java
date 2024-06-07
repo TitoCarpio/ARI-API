@@ -2,6 +2,7 @@ package com.adminRiesgos.models.entities;
 
 
 import com.adminRiesgos.utils.Encoder;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -37,11 +38,11 @@ public class User {
     // Methods
 
     // TODO: Implement Cipher method
-    public String Encrypt(String data, String input, String salt) {
+    public String Encrypt(String data, String key, String salt) {
 
         String result = "" ;
         try {
-            result = encoder.encrypt(data,input,salt);}
+            result = encoder.encrypt(data,key,salt);}
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -50,12 +51,15 @@ public class User {
     }
 
     // TODO: Implement Decipher method
-    public String Decrypt( String key){
-        return null;
-    }
+    public String Decrypt( String data, String key, String salt){
+        String result = "";
+        try {
+            result = encoder.decypt(data,key,salt);}
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
-    public String ToJson(){
-        return null;
+        return result;
     }
 
 }
