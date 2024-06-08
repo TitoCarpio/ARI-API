@@ -5,7 +5,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface FileService {
-	
-	Map<String, Object> readFile( MultipartFile file);
+
+	Map<String, Object> readFile(MultipartFile file, String delim, String key);
 
 }

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.io.InputStreamReader;
 
 import com.adminRiesgos.models.entities.User;
+import com.adminRiesgos.utils.JsonConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,8 +19,10 @@ import com.adminRiesgos.services.FileService;
 @Service
 public class fileImpl implements FileService{
 
+	private JsonConverter jsonConverter = new JsonConverter();
+
 	@Override
-	public Map<String, Object> readFile(MultipartFile file) {
+	public Map<String, Object> readFile(MultipartFile file, String delim, String key) {
 		
 		//verifico que el archivo sea un txt
 		if (!file.getOriginalFilename().endsWith(".txt")) {
@@ -38,14 +41,15 @@ public class fileImpl implements FileService{
 					.lines()
 					.map(
 							u ->
-									new User(u.split(";"))
+									new User(u.split(delim), key)
 
 					)
 			.toList();
-            System.out.println(users);
+			String jsonArray = jsonConverter.convertToJSON(users);
+            System.out.println(jsonArray);
             
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getMessage());
 		}
 		
 		
