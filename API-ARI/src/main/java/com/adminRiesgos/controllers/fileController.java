@@ -17,7 +17,7 @@ import com.adminRiesgos.services.FileService;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/API/v1/ari")
+@RequestMapping("/API/v1/ari/txt/")
 public class fileController {
 	
 	@Autowired
