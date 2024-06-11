@@ -22,7 +22,7 @@ public class fileImpl implements FileService{
 	private JsonConverter jsonConverter = new JsonConverter();
 
 	@Override
-	public Map<String, Object> readFile(MultipartFile file, String delim, String key) {
+	public Map<String, Object> readTxtFile(MultipartFile file, String delim, String key) {
 		
 		//verifico que el archivo sea un txt
 		if (!file.getOriginalFilename().endsWith(".txt")) {

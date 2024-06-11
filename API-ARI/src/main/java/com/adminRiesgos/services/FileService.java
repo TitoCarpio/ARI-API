@@ -6,6 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface FileService {
 
-	Map<String, Object> readFile(MultipartFile file, String delim, String key);
+	Map<String, Object> readTxtFile(MultipartFile file, String delim, String key);
 
 }
