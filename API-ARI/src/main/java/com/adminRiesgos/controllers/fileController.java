@@ -17,19 +17,28 @@ import com.adminRiesgos.services.FileService;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/API/v1/ari/txt/")
+@RequestMapping("/API/v1/ari/")
 public class fileController {
 	
 	@Autowired
 	private FileService fileServices;
 	
-	@PostMapping(value = "/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@PostMapping(value = "/txt/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<?> readTxtFile(@RequestParam("file") MultipartFile data, @RequestParam("savePath") String savePath,
 									  @RequestParam("delim") String delim, @RequestParam("key") String key){
 		fileServices.readTxtFile(data,delim, key);
 
 
 		
+		return new ResponseEntity<>("termino", HttpStatus.OK);
+	}
+
+	@PostMapping(value =  "/json/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public	ResponseEntity<?> readJsonFile(@RequestParam("file") MultipartFile data, @RequestParam("savePath") String savePath,
+											 @RequestParam("delim") String delim, @RequestParam("key") String key)
+	{
+		fileServices.readJsonFile(data,delim,key);
+
 		return new ResponseEntity<>("termino", HttpStatus.OK);
 	}
 

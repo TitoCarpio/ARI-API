@@ -1,0 +1,14 @@
+{
+	"id":"03110567-7",
+	"name":"Jaime Roberto",
+	"last_name":"Climaco Navarrete",
+	"card":"c/yX+Lrod+DoYXxADt8Qow==",
+	"type":"GOLD",
+	"cellphone":"22779898",
+	"polygon":
+				{"geometry":
+					[{"coordinates":"(88.32 15.119)","type":"Point"},
+					{"coordinates":"(10.911 51.22)","type":"Point"}],
+					"type":"FeatureCollection"
+				}
+}
