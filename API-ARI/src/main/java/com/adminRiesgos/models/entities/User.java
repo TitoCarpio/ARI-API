@@ -24,7 +24,7 @@ public class User {
     private String card;
     private String type;
     private String cellphone;
-    private JSONObject polygon; // TODO: Cambiar de String a JSON
+    private String polygon; // TODO: Cambiar de String a JSON
 
     @JsonIgnore
     private Encoder encoder = new Encoder();

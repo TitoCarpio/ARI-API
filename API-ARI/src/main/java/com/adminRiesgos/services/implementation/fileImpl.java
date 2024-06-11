@@ -57,4 +57,27 @@ public class fileImpl implements FileService{
 		return null;
 	}
 
+	@Override
+	public String readJsonFile(MultipartFile file, String delim, String key) {
+		if (!file.getOriginalFilename().endsWith(".json")) {
+			throw new FileNameException("El archivo debe tener extensión .txt");
+		}
+
+		//verifico que el archivo no este vacio
+		if (file.isEmpty()) {
+			throw new FileEmptyException("El archivo está vacío");
+		}
+
+		try(BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream())))
+		{
+			System.out.println(reader.lines().collect(Collectors.toList()));
+		}
+		catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+
+		return null;
+	}
+
 }

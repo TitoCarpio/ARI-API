@@ -37,7 +37,7 @@ public class JsonConverter {
 
 
     @JsonPropertyOrder({"type","coordinates"})
-    public JSONObject convertToGeoJson(String data)
+    public String convertToGeoJson(String data)
     {
         JSONObject result = new JSONObject();
         result.put("type","FeatureCollection");
@@ -54,7 +54,7 @@ public class JsonConverter {
 
        System.out.println(result);
         //System.out.println(points);
-        return result;
+        return result.toString();
     }
 
 
