@@ -24,7 +24,7 @@ public class fileController {
 	private FileService fileServices;
 	
 	@PostMapping(value = "/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<?> readFile(@RequestParam("file") MultipartFile data, @RequestParam("savePath") String savePath,
+	public ResponseEntity<?> readTxtFile(@RequestParam("file") MultipartFile data, @RequestParam("savePath") String savePath,
 									  @RequestParam("delim") String delim, @RequestParam("key") String key){
 		fileServices.readTxtFile(data,delim, key);
 
