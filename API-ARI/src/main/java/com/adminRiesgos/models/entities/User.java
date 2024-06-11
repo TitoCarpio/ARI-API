@@ -2,10 +2,12 @@ package com.adminRiesgos.models.entities;
 
 
 import com.adminRiesgos.utils.Encoder;
+import com.adminRiesgos.utils.JsonConverter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -19,13 +21,16 @@ public class User {
     private String document;
     private String name;
     private String last_name;
-    private String card; // TODO: Implementar cifrado del numero de tarjeta
+    private String card;
     private String type;
     private String cellphone;
-    private String polygon; // TODO: Cambiar de String a JSON
+    private JSONObject polygon; // TODO: Cambiar de String a JSON
 
     @JsonIgnore
     private Encoder encoder = new Encoder();
+
+    @JsonIgnore
+    private JsonConverter jsonConverter = new JsonConverter();
 
     //Constructor from array
     public User(String[] data, String key){
@@ -35,7 +40,7 @@ public class User {
         this.card = this.Encrypt(data[3], key,data[1].concat(data[0]).concat(data[2]));
         this.type = data[4];
         this.cellphone = data[5];
-        this.polygon = data[6];
+        this.polygon = this.jsonConverter.convertToGeoJson(data[6]);
     }
 
     // Methods
@@ -49,7 +54,6 @@ public class User {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(result);
         return result;
     }
 
