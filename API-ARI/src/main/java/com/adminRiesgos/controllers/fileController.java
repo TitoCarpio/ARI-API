@@ -37,9 +37,9 @@ public class fileController {
 	public	ResponseEntity<?> readJsonFile(@RequestParam("file") MultipartFile data, @RequestParam("savePath") String savePath,
 											 @RequestParam("delim") String delim, @RequestParam("key") String key)
 	{
-		fileServices.readJsonFile(data,delim,key);
+		String result = fileServices.readJsonFile(data,delim,key);
 
-		return new ResponseEntity<>("termino", HttpStatus.OK);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 }

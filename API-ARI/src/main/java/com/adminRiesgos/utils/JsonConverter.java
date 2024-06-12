@@ -18,6 +18,8 @@ public class JsonConverter {
 
     private ObjectMapper mapper = new ObjectMapper();
 
+
+
     public String convertToJSON(List<User> users){
 
         String jsonUsers =  "";
@@ -33,7 +35,12 @@ public class JsonConverter {
 
         return jsonUsers;}
 
-    public String convertToString(){return null;}
+    public String convertToUser(String data){
+
+
+
+
+        return null;}
 
 
     @JsonPropertyOrder({"type","coordinates"})
