@@ -35,4 +35,16 @@ public class ControllerExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 	
+	@ExceptionHandler(JSONConversionError.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	public ResponseEntity<?> fileException(JSONConversionError ex) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                ex.getMessage(),
+                new Date()
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+	
 }
