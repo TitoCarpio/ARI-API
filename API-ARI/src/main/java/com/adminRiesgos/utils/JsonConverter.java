@@ -7,72 +7,56 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.json.JSONObject;
 
-
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
 public class JsonConverter {
 
-    private ObjectMapper mapper = new ObjectMapper();
+	private ObjectMapper mapper = new ObjectMapper();
 
+	public String convertToJSON(List<User> users) {
 
+		String jsonUsers = "";
 
-    public String convertToJSON(List<User> users){
+		try {
+			jsonUsers = this.mapper.writeValueAsString(users);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 
-        String jsonUsers =  "";
+		return jsonUsers;
+	}
 
-        try
-        {
-             jsonUsers = this.mapper.writeValueAsString(users);
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
+	public String convertToUser(String data) {
 
-        return jsonUsers;}
+		return null;
+	}
 
-    public String convertToUser(String data){
+	@JsonPropertyOrder({ "type", "coordinates" })
+	public String convertToGeoJson(String data) {
+		JSONObject result = new JSONObject();
+		result.put("type", "FeatureCollection");
+		String trimmedString = data.trim();
+		String cleanedString = trimmedString.substring(1, data.length() - 1);
+		// System.out.println(cleanedString);
+		List<String> divided = List.of(cleanedString.split(","));
 
+		List<JSONObject> points = divided.stream().map(this::convertToGeometry).toList();
+		result.put("geometry", points);
 
+		System.out.println(result);
+		// System.out.println(points);
+		return result.toString();
+	}
 
+	public JSONObject convertToGeometry(String data) {
 
-        return null;}
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("type", "Point");
+		jsonObject.put("coordinates", data);
 
-
-    @JsonPropertyOrder({"type","coordinates"})
-    public String convertToGeoJson(String data)
-    {
-        JSONObject result = new JSONObject();
-        result.put("type","FeatureCollection");
-        String trimmedString = data.trim();
-        String cleanedString = trimmedString.substring(1,data.length()-1);
-        // System.out.println(cleanedString);
-        List<String> divided = List.of(cleanedString.split(","));
-
-        List<JSONObject> points = divided.stream()
-                .map(
-                        this::convertToGeometry
-                ).toList();
-        result.put("geometry",points);
-
-       System.out.println(result);
-        //System.out.println(points);
-        return result.toString();
-    }
-
-
-   public JSONObject convertToGeometry(String data){
-
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("type","Point");
-        jsonObject.put("coordinates",data);
-
-        return jsonObject;
-        }
-
+		return jsonObject;
+	}
 
 }
