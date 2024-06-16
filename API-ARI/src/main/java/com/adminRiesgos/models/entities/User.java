@@ -3,6 +3,9 @@ package com.adminRiesgos.models.entities;
 import com.adminRiesgos.utils.Encoder;
 import com.adminRiesgos.utils.JsonConverter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -13,12 +16,28 @@ import lombok.ToString;
 public class User {
 
 	// Properties
+	@NotNull(message = "Document cannot be empty")
+	@NotEmpty(message = "Document cannot be empty")
+	@Pattern(regexp = "[0-9]+-\\d", message = "Document provided does not follow allowed format, must be ########-# ")
 	private String document;
+
+	@NotEmpty(message = "name cannot be empty")
 	private String name;
+
+	@NotEmpty(message = "Last name cannot be empty")
 	private String last_name;
+
+	@NotEmpty(message = "card cannot be empty")
+	@NotNull(message = "card can't be null")
 	private String card;
+
+	@NotEmpty(message = "card must have a type")
 	private String type;
+
+
 	private String cellphone;
+
+	@NotEmpty(message = "polygon cannot be empty")
 	private String polygon; // TODO: Cambiar de String a JSON
 
 	@JsonIgnore
@@ -59,8 +78,6 @@ public class User {
 	public String Decrypt(String data, String key) {
 		String result = "";
 		try {
-			// TODO: fix final block not properly padded, due to salt being generated
-			// manually.
 			result = encoder.decypt(data, key, this.name.concat(this.document.concat(this.last_name)));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

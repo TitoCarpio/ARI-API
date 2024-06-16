@@ -6,10 +6,25 @@
 	"type":"GOLD",
 	"cellphone":"22779898",
 	"polygon":
-				{"geometry":
-					[{"coordinates":"(-90.7695083618164 17.817752838134766)","type":"Point"},
-					{"coordinates":"(100.01 99.15)","type":"Point"}],
-					"type":"FeatureCollection"
+				{
+					"type":"FeatureCollection",
+					"features":[
+						{
+							"type":"Feature",
+							"geometry":
+							{
+								"type":"Polygon",
+								"coordinates":[
+									-90.7695083618164, 17.817752838134766,
+									100.01, 99.15
+								]
+							},
+							"properties":{
+								"Land Use":"I"
+							}
+						}
+					]
+					  
 				}
 	},
 	{"document":"03110567-8",
@@ -19,10 +34,24 @@
 	"type":"SILVER",
 	"cellphone":"22779898",
 	"polygon":
-				{"geometry":
-					[{"coordinates":"(88.32 15.119)","type":"Point"},
-					{"coordinates":"(10.911 51.22)","type":"Point"}],
-					"type":"FeatureCollection"
-				}
+		{"type":"FeatureCollection",
+			"features":[
+				{
+					"type":"Feature",
+							"geometry":
+							{
+								"type":"Polygon",
+								"coordinates":[
+									88.32, 15.119,
+									10.911, 51.22
+								]
+							},
+							"properties":{
+								"Land Use":"I"
+							}
+						}
+					]
+					  
+		}
 	}
 ]

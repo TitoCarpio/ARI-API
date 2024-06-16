@@ -13,6 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +35,17 @@ public class fileController {
 	
 	@PostMapping(value = "/txt/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<?> readTxtFile(@RequestParam("file") MultipartFile data, @RequestParam("savePath") String savePath,
-									  @RequestParam("delim") String delim, @RequestParam("key") String key){
+										 @RequestParam("delim") String delim, @RequestParam("key") String key){
 		
+		String response = fileServices.readTxtFile(data,delim, key);
+
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@PostMapping(value = "/test/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<?> testEndpoint(@RequestParam("file") MultipartFile data, @RequestParam("savePath") String savePath,
+										 @RequestParam("delim") String delim, @RequestParam("key") String key){
+
 		String response = fileServices.readTxtFile(data,delim, key);
 
 		return new ResponseEntity<>(response, HttpStatus.OK);

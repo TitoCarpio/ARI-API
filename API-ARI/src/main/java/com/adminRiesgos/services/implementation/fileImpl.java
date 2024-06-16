@@ -41,9 +41,10 @@ public class fileImpl implements FileService {
 
 			// Runs through every line of the file, creating an User and adding it to the
 			// list
-			List<User> users = reader.lines().map(u -> new User(u.split(delim), key)
-
-			).toList();
+			List<User> users = reader
+					.lines()
+					.map(u -> new User(u.split(delim), key))
+					.toList();
 			String jsonArray = jsonConverter.convertToJSON(users);
 			//return the json
 			return jsonArray;
