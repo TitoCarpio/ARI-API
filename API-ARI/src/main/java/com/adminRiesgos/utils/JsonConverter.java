@@ -42,24 +42,7 @@ public class JsonConverter {
 		return null;
 	}
 
-	/*@JsonPropertyOrder({ "type", "coordinates"})
-	public String convertToGeoJson(String data) {
-		JSONObject result = new JSONObject();
-		result.put("type", "FeatureCollection");
 
-		String trimmedString = data.trim();
-		String cleanedString = trimmedString.substring(1, data.length() - 1);
-		// System.out.println(cleanedString);
-		List<String> divided = List.of(cleanedString.split(","));
-
-		List<JSONObject> points = divided.stream().map(this::convertToGeometry).toList();
-		result.put("geometry", points);
-
-
-		System.out.println(result);
-		// System.out.println(points);
-		return result.toString();
-	}*/
 
 	public String convertToGeoJson(String data) {
 		this.module.addSerializer(String.class, new CustomGeometrySerializer());
@@ -67,8 +50,11 @@ public class JsonConverter {
 
 		String coords = "";
 
+
 		try {
 			coords = mapper.writeValueAsString(data);
+
+
 		}
 		catch (Exception e)
 		{

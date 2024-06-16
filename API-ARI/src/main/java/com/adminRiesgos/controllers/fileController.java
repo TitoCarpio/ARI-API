@@ -42,14 +42,6 @@ public class fileController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-	@PostMapping(value = "/test/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<?> testEndpoint(@RequestParam("file") MultipartFile data, @RequestParam("savePath") String savePath,
-										 @RequestParam("delim") String delim, @RequestParam("key") String key){
-
-		String response = fileServices.readTxtFile(data,delim, key);
-
-		return new ResponseEntity<>(response, HttpStatus.OK);
-	}
 
 	@PostMapping(value =  "/json/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
 	public	ResponseEntity<ByteArrayResource> readJsonFile(@RequestParam("file") MultipartFile data, @RequestParam("savePath") String savePath,
