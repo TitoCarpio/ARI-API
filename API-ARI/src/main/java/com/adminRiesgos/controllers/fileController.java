@@ -50,13 +50,13 @@ public class fileController {
 		String result = fileServices.readJsonFile(data,delim,key);
 		
 		
-//		File file = new File(filePath);
+
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         outputStream.write(result.getBytes(StandardCharsets.UTF_8));
         ByteArrayResource resource = new ByteArrayResource(outputStream.toByteArray());
 
         HttpHeaders headers = new HttpHeaders();
-        //headers.setContentDispositionFormData("Results", "result.txt");
+
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=result.txt");
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 

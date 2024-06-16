@@ -37,12 +37,6 @@ public class JsonConverter {
 		return jsonUsers;
 	}
 
-	public String convertToUser(String data) {
-
-		return null;
-	}
-
-
 
 	public String convertToGeoJson(String data) {
 		this.module.addSerializer(String.class, new CustomGeometrySerializer());
@@ -66,13 +60,6 @@ public class JsonConverter {
 		return coords;
 	}
 
-	public JSONObject convertToGeometry(String data) {
 
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("type", "Point");
-		jsonObject.put("coordinates", data);
-
-		return jsonObject;
-	}
 
 }
