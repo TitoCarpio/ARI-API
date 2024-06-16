@@ -56,7 +56,7 @@ public class fileController {
         ByteArrayResource resource = new ByteArrayResource(outputStream.toByteArray());
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentDispositionFormData("Results", "result.txt");
+        //headers.setContentDispositionFormData("Results", "result.txt");
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=result.txt");
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 
